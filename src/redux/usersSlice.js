@@ -11,28 +11,19 @@ const usersSlice = createSlice({
     initialState: {
         data: [],
         status: undefined,
-        name: ""
     },  
     reducers: {
     },
     extraReducers: {
         [fetchUsers.fulfilled]: (state, action) => {
-            return {
-                data: action.payload, 
-                status: "success",
-            }
+            state.data = action.payload
+            state.status = "success"
         },
         [fetchUsers.pending]: (state, action) => {
-            return {
-                ...state,
-                status: "loading",
-            }
+            state.status = "loading"
         },
         [fetchUsers.rejected]: (state, action) => {
-            return {
-                ...state.data,
-                status: "error",
-            }
+            state.status = "error"
         }
     }
   

@@ -17,22 +17,14 @@ const postsSlice = createSlice({
     },
     extraReducers: {
         [fetchPosts.fulfilled]: (state, action) => {
-            return {
-                data: [...action.payload], 
-                status: "success",
-            }
+            state.data = action.payload
+            state.status = "success"
         },
         [fetchPosts.pending]: (state, action) => {
-            return {
-                ...state,
-                status: "loading",
-            }
+            state.status = "loading"
         },
         [fetchPosts.rejected]: (state, action) => {
-            return {
-                ...state.data,
-                status: "error",
-            }
+            state.status = "error"
         }
     }
   
